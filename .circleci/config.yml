@@ -28,13 +28,14 @@ jobs:
 orbs:
   docker: circleci/docker@1.4.0
 workflows:
-  my-pipeline:
+  commit:
+    my-pipeline:
     jobs:
       - npm run test
-      - build-and-push
+      - build-and-push:
           requires:
-                  - npm run test
+            - npm run test
           filters:
             branches:
               only:
-                master
+                - master
