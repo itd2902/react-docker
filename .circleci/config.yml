@@ -32,9 +32,9 @@ workflows:
     jobs:
       - npm run test
       - build-and-push
-          filter:
-            requires:
-              - npm run test
+          requires:
+                  - npm run test
+          filters:
             branches:
               only:
                 master
