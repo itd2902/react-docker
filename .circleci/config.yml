@@ -2,6 +2,7 @@
 version: 2.1
 orbs:
   node: circleci/node@3.0.0
+  docker: circleci/docker@1.4.0
 
 jobs:
   build-and-push:
@@ -16,7 +17,8 @@ jobs:
           docker-username: DOCKER_USER
           docker-password: DOCKER_PASSWORD
       - docker/build:
-          image: my_repo/orb-test
+          image: $DOCKER_IMAGE
+          tag: $DOCKER_TAG
       - docker/push:
           digest-path: /tmp/digest.txt
           image: $DOCKER_IMAGE
@@ -25,11 +27,8 @@ jobs:
       - run:
           command: |
             echo "Digest is: $(</tmp/digest.txt)"
-orbs:
-  docker: circleci/docker@1.4.0
 workflows:
-  commit:
-    my-pipeline:
+  my-pipeline:
     jobs:
       - npm run test
       - build-and-push:
