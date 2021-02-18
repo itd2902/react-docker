@@ -6,7 +6,7 @@ orbs:
 
 jobs:
   build-and-push:
-    enviroment:
+    environment:
       DOCKER_IMAGE: quangnx/react-docker
       DOCKER_TAG: latest
     executor: docker/docker
@@ -23,7 +23,6 @@ jobs:
           digest-path: /tmp/digest.txt
           image: $DOCKER_IMAGE
           tag: $DOCKER_TAG
-
       - run:
           command: |
             echo "Digest is: $(</tmp/digest.txt)"
