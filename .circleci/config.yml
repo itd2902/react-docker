@@ -26,7 +26,7 @@ jobs:
           command: |
             echo "Digest is: $(</tmp/digest.txt)"
 workflows:
-  my-pipeline:
+  commit:
     jobs:
       - npm run test
       # - build-and-push:
