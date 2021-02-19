@@ -26,13 +26,13 @@ jobs:
           command: |
             echo "Digest is: $(</tmp/digest.txt)"
 workflows:
-  commit:
+  my-pipeline:
     jobs:
-      - npm run test
-      # - build-and-push:
-      #     requires:
-      #       - npm run test
-      #     filters:
-      #       branches:
-      #         only:
-      #           - master
+      - node/test
+      - build-and-push:
+          requires:
+            - node/test
+          filters:
+            branches:
+              only:
+                - master
